@@ -17,6 +17,7 @@ export class TodoEditComponent implements OnInit {
 
   todoId: string;
   todo: Todo;
+  isReadOnly: boolean = true;
 
   constructor(private fb: FormBuilder, 
     private todosService: TodosService,
@@ -28,7 +29,7 @@ export class TodoEditComponent implements OnInit {
   ngOnInit() {
 
     this.todoEditForm = this.createTodoEditForm();
-    this.todoEditForm.disable();
+    this.todoEditForm.get("completed").disable();
 
     this.spinner.show();
 
@@ -47,7 +48,8 @@ export class TodoEditComponent implements OnInit {
   }
 
   public onEdit(): void {
-    this.todoEditForm.enable();
+    this.isReadOnly = false;
+    this.todoEditForm.get("completed").enable();
   }
 
   public onSave(): void {
@@ -56,7 +58,8 @@ export class TodoEditComponent implements OnInit {
       return;
     }
 
-    this.todoEditForm.disable();
+    this.isReadOnly = true;
+    this.todoEditForm.get("completed").disable();
     this.spinner.show();
 
     this.todo.userId = this.todoEditForm.value.userId;
@@ -84,7 +87,6 @@ export class TodoEditComponent implements OnInit {
   }
 
   public onCancel(): void {
-    this.todoEditForm.disable();
     this.router.navigate(['/']);
   }
    

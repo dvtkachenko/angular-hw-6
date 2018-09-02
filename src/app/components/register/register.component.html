@@ -38,8 +38,8 @@
             <div class="invalid-feedback" [hidden]="!registerForm.get('password').hasError('required')">
                 Password can not be empty
             </div>
-            <div class="invalid-feedback" [hidden]="!registerForm.get('password').hasError('minlength')">
-                Password should consist more than 8 symbols
+            <div class="invalid-feedback" [hidden]="registerForm.get('password').valid">
+              {{ registerForm.get('password').getError('invalidPassword') }}
             </div>
           </div>
           <button type="submit" class="btn btn-primary mx-2" [disabled]="registerForm.invalid">Register</button>

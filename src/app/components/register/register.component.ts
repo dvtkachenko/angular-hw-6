@@ -1,7 +1,7 @@
 import { ToastrService } from 'node_modules/ngx-toastr';
 import { NgxSpinnerService } from 'node_modules/ngx-spinner';
 import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl, ValidationErrors } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { User } from '../../models/user.model';
@@ -55,11 +55,45 @@ export class RegisterComponent implements OnInit {
     this.router.navigate(['login']);
   }
 
+  private passwordValidator(control: FormControl): ValidationErrors {
+
+    const value = control.value;
+
+    const hasNumber = /[0-9]/.test(value);
+    const hasCapitalLetter = /[A-Z]/.test(value);
+    const isLengthValid = value ? value.length > 7 : false;
+
+    const passwordValid = hasNumber && hasCapitalLetter && isLengthValid;
+   
+    if (!passwordValid) {
+
+      let message: string = "Password should consist at least:";
+      let errors: any[];
+
+      if (!hasNumber) {
+        message = message + " 1 number ";
+      }
+
+      if (!hasCapitalLetter) {
+        message = message + " 1 capital letter ";
+      }
+
+      if (!isLengthValid) {
+        message = message + " 8 symbols ";
+      }
+
+      message = message + "!";
+
+      return { invalidPassword: message };
+    }
+     return null;
+   }
+
   private createRegisterForm(): FormGroup {
     return this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(16)]],
-      password: ['', [Validators.required, Validators.minLength(8)]]
+      password: ['', [Validators.required, this.passwordValidator]]
     });
   }
 
