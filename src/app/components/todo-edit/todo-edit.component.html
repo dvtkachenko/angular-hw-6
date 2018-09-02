@@ -1,0 +1,38 @@
+<div class="container">
+  <ngx-spinner type="ball-atom" loadingText="Processing ...">
+  </ngx-spinner>
+  <div class="card card-body">
+    <form novalidate [formGroup]="todoEditForm">
+
+      <div class="form-group">
+        <label for="userId">User Id</label>
+        <input type="number" name="userId" id="userId" class="form-control" name="userId" formControlName="userId" 
+               [ngClass]="{ 'is-invalid': todoEditForm.get('userId').invalid && todoEditForm.touched }" 
+               required>
+        <div class="invalid-feedback" [hidden]="todoEditForm.get('userId').valid">
+          User id is invalid
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" name="title" id="title" class="form-control" name="title" formControlName="title" 
+               [ngClass]="{ 'is-invalid': todoEditForm.get('title').invalid && todoEditForm.touched }" 
+               required>
+        <div class="invalid-feedback" [hidden]="todoEditForm.get('title').valid">
+          Title can not be empty
+        </div>
+      </div>
+
+      <div class="custom-control custom-checkbox mt-4 mb-3">
+        <input type="checkbox" binary="true" name="completed" id="completed" class="custom-control-input" 
+               name="completed" formControlName="completed">
+        <label class="custom-control-label" for="completed">Completed</label>
+      </div>
+
+      <button class="btn btn-primary m-1" *ngIf="todoEditForm.disabled" (click)="onEdit()">Edit</button>
+      <button class="btn btn-primary m-1" *ngIf="!todoEditForm.disabled" (click)="onSave()" [disabled]="todoEditForm.invalid">Save</button>
+      <button class="btn btn-primary m-1" (click)="onCancel()">Cancel</button>
+    </form>
+  </div>
+</div>
