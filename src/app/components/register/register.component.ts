@@ -30,9 +30,6 @@ export class RegisterComponent implements OnInit {
 
   public onSubmit(): void {
 
-    // TODO delete
-    console.log(this.registerForm.get('password'));
-
     if (this.registerForm.invalid) {
       return;
     }
@@ -62,16 +59,13 @@ export class RegisterComponent implements OnInit {
 
     const value: string = control.value;
 
-//    const isNotEmpty: boolean = value ? value.length > 0 : false;
     const isLengthNotShort: boolean = value ? value.length > 2 : false;
     const isLengthNotLong: boolean = value ? value.length < 17 : false;
 
     let hasForbiddenLetter: boolean = false;
     value.split('').forEach(letter => { 
-      console.log("Letter is -> ", letter);
       if (value && !(/[a-zA-Z]/.test(letter))) {
         hasForbiddenLetter = true;
-        console.error("Forbidden letter is -> ", letter);
       }
     });
 
@@ -137,7 +131,6 @@ export class RegisterComponent implements OnInit {
   private createRegisterForm(): FormGroup {
     return this.fb.group({
       email: ['', [ Validators.required, Validators.email ]],
-//      name: ['', [ Validators.required, Validators.minLength(3), Validators.maxLength(16) ]],
       name: ['', [ this.nameValidator ]],
       password: ['', [ this.passwordValidator ]]
     });
