@@ -30,6 +30,9 @@ export class RegisterComponent implements OnInit {
 
   public onSubmit(): void {
 
+    // TODO delete
+    console.log(this.registerForm.get('password'));
+
     if (this.registerForm.invalid) {
       return;
     }
@@ -54,47 +57,89 @@ export class RegisterComponent implements OnInit {
   public onCancel(): void {
     this.router.navigate(['login']);
   }
+  
+  private nameValidator(control: FormControl): ValidationErrors {
+
+    const value: string = control.value;
+
+//    const isNotEmpty: boolean = value ? value.length > 0 : false;
+    const isLengthNotShort: boolean = value ? value.length > 2 : false;
+    const isLengthNotLong: boolean = value ? value.length < 17 : false;
+
+    let hasForbiddenLetter: boolean = false;
+    value.split('').forEach(letter => { 
+      console.log("Letter is -> ", letter);
+      if (value && !(/[a-zA-Z]/.test(letter))) {
+        hasForbiddenLetter = true;
+        console.error("Forbidden letter is -> ", letter);
+      }
+    });
+
+    const nameValid = isLengthNotShort && isLengthNotLong && !hasForbiddenLetter;
+   
+    if (!nameValid) {
+
+      let errors = {};
+
+      if (!isLengthNotShort) {
+        errors['isLengthNotShort'] = "Name should consist more than 2 symbols !";
+      }
+
+      if (!isLengthNotLong) {
+        errors['isLengthNotLong'] = "Name should consist less than 16 symbols !";
+      }
+
+      if (hasForbiddenLetter) {
+        errors['hasForbiddenLetter'] = "Name should consist only english letters !";
+      }
+
+      return errors;
+    }
+     return null;
+   }
 
   private passwordValidator(control: FormControl): ValidationErrors {
 
     const value = control.value;
 
-    const hasNumber = /[0-9]/.test(value);
-    const hasCapitalLetter = /[A-Z]/.test(value);
-    const isLengthValid = value ? value.length > 7 : false;
+    const isNotEmpty: boolean = value ? value.length > 0 : false;
+    const hasNumber: boolean = /[0-9]/.test(value);
+    const hasCapitalLetter: boolean = /[A-Z]/.test(value);
+    const isLengthValid: boolean = value ? value.length > 7 : false;
 
-    const passwordValid = hasNumber && hasCapitalLetter && isLengthValid;
+    const passwordValid = isNotEmpty && hasNumber && hasCapitalLetter && isLengthValid;
    
     if (!passwordValid) {
 
-      let message: string = "Password should consist at least:";
-      let errors: any[];
+      let errors = {};
+
+      if (!isNotEmpty) {
+        errors['isNotEmpty'] = "Password can not be empty !";
+      }
 
       if (!hasNumber) {
-        message = message + " 1 number ";
+        errors['hasNoNumber'] = "Password should consist at least 1 number !";
       }
 
       if (!hasCapitalLetter) {
-        message = message + " 1 capital letter ";
+        errors['hasNoCapitalLetter'] = "Password should consist at least 1 capital letter !";
       }
 
       if (!isLengthValid) {
-        message = message + " 8 symbols ";
+        errors['lengthInvalid'] = "Password should consist at least 8 symbols !";
       }
 
-      message = message + "!";
-
-      return { invalidPassword: message };
+      return errors;
     }
      return null;
    }
 
   private createRegisterForm(): FormGroup {
     return this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(16)]],
-      password: ['', [Validators.required, this.passwordValidator]]
+      email: ['', [ Validators.required, Validators.email ]],
+//      name: ['', [ Validators.required, Validators.minLength(3), Validators.maxLength(16) ]],
+      name: ['', [ this.nameValidator ]],
+      password: ['', [ this.passwordValidator ]]
     });
   }
-
 }
