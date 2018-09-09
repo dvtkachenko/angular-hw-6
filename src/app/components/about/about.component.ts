@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AboutComponent implements OnInit {
 
+  public currentDate: number;
+
+  public array: number[];
+
   constructor() { }
 
   ngOnInit() {
+    this.currentDate = new Date().getTime();
+    this.array = [3, 5, 10, 1, 4];
   }
 
 }

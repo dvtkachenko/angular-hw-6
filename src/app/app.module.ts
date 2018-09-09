@@ -16,6 +16,12 @@ import { TodoEditComponent } from './components/todo-edit/todo-edit.component';
 import { TodoAddComponent } from './components/todo-add/todo-add.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { CustomDatePipe } from './pipes/custom-date.pipe';
+import { SumArrayPipe } from './pipes/sum-array.pipe';
+import { ShowPipesComponent } from './components/show-pipes/show-pipes.component';
+import { MyNgStyleDirective } from './directives/ng-style.directive';
+import { MyNgClassDirective } from './directives/ng-class.directive';
+
 
 @NgModule({
   declarations: [
@@ -27,7 +33,12 @@ import { RegisterComponent } from './components/register/register.component';
     TodoEditComponent,
     TodoAddComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    CustomDatePipe,
+    SumArrayPipe,
+    ShowPipesComponent,
+    MyNgStyleDirective,
+    MyNgClassDirective
   ],
   imports: [
     BrowserModule,

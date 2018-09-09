@@ -10,6 +10,6 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     // clear token before start application for development purpose
-    localStorage.removeItem("token");
+//    localStorage.removeItem("token");
   }
 }

@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="col-6 mx-auto">
+    <div class="card card-body">
+      <h5 class="card-title"> Current date </h5>
+      <p class="card-text"> {{ currentDate | customDate:"en-US":"long" }} </p>
+
+      <h5 class="card-title"> Array </h5>
+      <p class="card-text"> Array = [{{ numArray | slice }}] </p>
+      <p class="card-text"> Sum of all array's elements = {{ numArray | sumarray }} </p>
+      <button class="btn btn-outline-info m-2" (click)="addNewElement()">Add new random element</button>
+    </div>
+  </div>
+</div>

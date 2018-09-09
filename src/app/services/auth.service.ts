@@ -13,15 +13,18 @@ export const NOT_AUTH = false;
 })
 export class AuthService {
 
-  private authStatus: BehaviorSubject<boolean> = new BehaviorSubject(NOT_AUTH);
+  private authStatus: BehaviorSubject<boolean>;
 
-  public authEvent: Observable<boolean> = this.authStatus.asObservable();
+  public authEvent: Observable<boolean>;
 
   private authUrl: string = environment.auth_url;
 
   private _token: string;
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {
+    this.authStatus = new BehaviorSubject(this.isAuth());
+    this.authEvent = this.authStatus.asObservable();
+  }
 
   public registerNewUser(user: User): Observable<boolean> {
     return this.httpClient.post(`${this.authUrl}/signup`, user, { responseType: "text"})
@@ -48,9 +51,9 @@ export class AuthService {
 
   public isAuth(): boolean {
     if (this._token || localStorage.getItem("token")) {
-      return true;
+      return AUTH;
     } 
-    return false;
+    return NOT_AUTH;
   }
 
   private set token(token: string) {
