@@ -19,8 +19,8 @@ import { RegisterComponent } from './components/register/register.component';
 import { CustomDatePipe } from './pipes/custom-date.pipe';
 import { SumArrayPipe } from './pipes/sum-array.pipe';
 import { ShowPipesComponent } from './components/show-pipes/show-pipes.component';
-import { MyNgStyleDirective } from './directives/ng-style.directive';
-import { MyNgClassDirective } from './directives/ng-class.directive';
+import { MyNgStyleDirective } from './directives/my-ng-style.directive';
+import { MyNgClassDirective } from './directives/my-ng-class.directive';
 
 
 @NgModule({

@@ -1,4 +1,4 @@
-import { Observable, BehaviorSubject } from 'rxjs';
+import { MyNgClassDirective } from './../../directives/my-ng-class.directive';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
