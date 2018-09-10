@@ -2,7 +2,7 @@
   <div class="col-6 mx-auto">
     <div class="card card-body">
       <h5 class="card-title"> Current date </h5>
-      <p class="card-text"> {{ currentDate | customDate:"en-US":"long" }} </p>
+      <p class="card-text"> {{ currentDate | customDate:"en-US":"YYYY/MM/DD HH:mm:ss" }} </p>
 
       <h5 class="card-title"> Array </h5>
       <p class="card-text"> Array = [{{ numArray | slice }}] </p>
