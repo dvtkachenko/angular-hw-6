@@ -1,7 +1,7 @@
 # Deployment
 
 This project was deployed on Heroku.
-Navigate to `https://dtkachenko-angular-course-app.herokuapp.com/`
+Navigate to [https://dtkachenko-angular-course-app.herokuapp.com](https://dtkachenko-angular-course-app.herokuapp.com)
 
 # HwApp
 
