@@ -18,7 +18,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { CustomDatePipe } from './pipes/custom-date.pipe';
 import { SumArrayPipe } from './pipes/sum-array.pipe';
-import { ShowPipesComponent } from './components/show-pipes/show-pipes.component';
+import { ShowPipesDirectivesComponent } from './components/show-pipes-directives/show-pipes-directives.component';
 import { MyNgStyleDirective } from './directives/my-ng-style.directive';
 import { MyNgClassDirective } from './directives/my-ng-class.directive';
 
@@ -36,7 +36,7 @@ import { MyNgClassDirective } from './directives/my-ng-class.directive';
     RegisterComponent,
     CustomDatePipe,
     SumArrayPipe,
-    ShowPipesComponent,
+    ShowPipesDirectivesComponent,
     MyNgStyleDirective,
     MyNgClassDirective
   ],

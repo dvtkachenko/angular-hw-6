@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from "@angular/core";
     pure: false
 })
 export class SumArrayPipe implements PipeTransform {
-    transform(array: number[]) {
+    transform(array: number[]): number | null {
         if (array.length < 1) {
             return;
         }
