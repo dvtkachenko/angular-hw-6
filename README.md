@@ -1,3 +1,8 @@
+# Deployment
+
+This project was deployed on Heroku.
+Navigate to `https://dtkachenko-angular-course-app.herokuapp.com/`
+
 # HwApp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.5.
