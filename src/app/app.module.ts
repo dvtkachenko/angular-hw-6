@@ -8,37 +8,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
-import { HomeComponent } from './components/home/home.component';
-import { NotFoundComponent } from './components/not-found/not-found.component';
-import { AboutComponent } from './components/about/about.component';
-import { TodoEditComponent } from './components/todo-edit/todo-edit.component';
-import { TodoAddComponent } from './components/todo-add/todo-add.component';
-import { LoginComponent } from './components/login/login.component';
-import { RegisterComponent } from './components/register/register.component';
-import { CustomDatePipe } from './pipes/custom-date.pipe';
-import { SumArrayPipe } from './pipes/sum-array.pipe';
-import { ShowPipesDirectivesComponent } from './components/show-pipes-directives/show-pipes-directives.component';
-import { MyNgStyleDirective } from './directives/my-ng-style.directive';
-import { MyNgClassDirective } from './directives/my-ng-class.directive';
 
+// custom modules
+import { CoreModule } from './core';
+import { ShowPipesDirectivesModule, TodoModule } from './modules';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent,
-    HomeComponent,
-    NotFoundComponent,
-    AboutComponent,
-    TodoEditComponent,
-    TodoAddComponent,
-    LoginComponent,
-    RegisterComponent,
-    CustomDatePipe,
-    SumArrayPipe,
-    ShowPipesDirectivesComponent,
-    MyNgStyleDirective,
-    MyNgClassDirective
   ],
   imports: [
     BrowserModule,
@@ -48,7 +25,10 @@ import { MyNgClassDirective } from './directives/my-ng-class.directive';
     FormsModule,
     ReactiveFormsModule,
     ToastrModule.forRoot(),
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    CoreModule,
+    TodoModule,
+    ShowPipesDirectivesModule
   ],
   providers: [],
   bootstrap: [AppComponent]
